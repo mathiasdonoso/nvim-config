@@ -21,11 +21,12 @@ return require('packer').startup(function(use)
   })
 
   use('folke/tokyonight.nvim')
+  use({ 'catppuccin/nvim', as = 'catppuccin' })
 
   use({
-      "folke/trouble.nvim",
+      'folke/trouble.nvim',
       config = function()
-          require("trouble").setup {
+          require('trouble').setup {
               icons = false,
           }
       end
