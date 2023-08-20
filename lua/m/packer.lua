@@ -20,10 +20,22 @@ return require('packer').startup(function(use)
 	  end
   })
 
+  use('folke/tokyonight.nvim')
+
+  use({
+      "folke/trouble.nvim",
+      config = function()
+          require("trouble").setup {
+              icons = false,
+          }
+      end
+  })
+
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use('theprimeagen/harpoon')
   use('mbbill/undotree')
   use('tpope/vim-fugitive')
+  use('nvim-treesitter/nvim-treesitter-context')
 
   use {
 	  'VonHeikemen/lsp-zero.nvim',
