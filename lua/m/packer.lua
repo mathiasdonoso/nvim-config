@@ -20,9 +20,6 @@ return require('packer').startup(function(use)
 	  end
   })
 
-  use('folke/tokyonight.nvim')
-  use({ 'catppuccin/nvim', as = 'catppuccin' })
-
   use({
       'folke/trouble.nvim',
       config = function()
