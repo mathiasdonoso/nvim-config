@@ -19,8 +19,6 @@ return require('packer').startup(function(use)
 		  vim.cmd('colorscheme rose-pine')
 	  end
   })
-  use({ 'catppuccin/nvim', as = 'catppuccin' })
-  use({ 'ray-x/aurora', as = 'aurora' })
 
   use({
       'folke/trouble.nvim',
