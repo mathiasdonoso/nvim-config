@@ -20,6 +20,7 @@ return require('packer').startup(function(use)
 	  end
   })
   use({ 'catppuccin/nvim', as = 'catppuccin' })
+  use({ 'ray-x/aurora', as = 'aurora' })
 
   use({
       'folke/trouble.nvim',
