@@ -3,7 +3,8 @@ require('rose-pine').setup({
 })
 
 function ColorMyPencils(color)
-    local default = "rose-pine"
+    -- rose-pine or catppuccin
+    local default = "catppuccin"
 	color = color or default
 	vim.cmd.colorscheme(color)
 
