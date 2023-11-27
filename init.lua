@@ -31,13 +31,14 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
-  'github/copilot.vim',
+  { 'github/copilot.vim', event = 'VeryLazy' },
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
+    event = 'VeryLazy',
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim',
@@ -55,6 +56,7 @@ require('lazy').setup({
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
+    event = 'InsertEnter',
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       'L3MON4D3/LuaSnip',
@@ -115,6 +117,7 @@ require('lazy').setup({
       flavour = 'mocha',
       transparent_background = true,
     },
+    lazy = false,
     config = function()
       vim.cmd.colorscheme 'catppuccin'
     end
@@ -148,7 +151,7 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim', opts = {}, event = 'VeryLazy' },
 
   -- Fuzzy Finder (files, lsp, etc)
   {
@@ -174,6 +177,7 @@ require('lazy').setup({
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    event = 'VeryLazy',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
