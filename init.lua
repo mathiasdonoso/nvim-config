@@ -127,6 +127,7 @@ require('lazy').setup({
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
+    lazy = false,
     opts = {
       options = {
         icons_enabled = false,
@@ -148,6 +149,7 @@ require('lazy').setup({
     -- See `:help ibl`
     main = 'ibl',
     opts = {},
+    event = 'VeryLazy',
   },
 
   -- "gc" to comment visual regions/lines
@@ -157,6 +159,7 @@ require('lazy').setup({
   {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
+    event = 'VeryLazy',
     dependencies = {
       'nvim-lua/plenary.nvim',
       -- Fuzzy Finder Algorithm which requires local dependencies to be built.
