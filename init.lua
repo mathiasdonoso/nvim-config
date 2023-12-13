@@ -23,6 +23,8 @@ vim.opt.rtp:prepend(lazypath)
 -- [[ Configure plugins ]]
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
+  'nvim-lua/plenary.nvim',
+  'ThePrimeagen/harpoon',
 
   -- Git related plugins
   'tpope/vim-fugitive',
@@ -198,7 +200,7 @@ require('lazy').setup({
 }, {})
 
 -- Set highlight on search
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 
 -- Make line numbers default
 vim.wo.number = true
@@ -250,6 +252,7 @@ vim.keymap.set('n', '<leader>e', vim.cmd.Exp)
 -- Remap for dealing with word wrap
 -- vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 -- vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>")
 
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
@@ -352,6 +355,16 @@ vim.keymap.set('n', '<leader>fw', require('telescope.builtin').live_grep, { desc
 -- vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 -- vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
+-- [[ Configure Harpoon ]]
+-- vim.keymap.set('n', '<leader>a', require('harpoon.mark').add_file())
+local ui = require('harpoon.ui')
+vim.keymap.set('n', '<leader>a', require('harpoon.mark').add_file)
+vim.keymap.set('n', '<C-e>', ui.toggle_quick_menu)
+vim.keymap.set('n', '<leader>1', function() ui.nav_file(1) end)
+vim.keymap.set('n', '<leader>2', function() ui.nav_file(2) end)
+vim.keymap.set('n', '<leader>3', function() ui.nav_file(3) end)
+vim.keymap.set('n', '<leader>4', function() ui.nav_file(4) end)
+
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
@@ -408,15 +421,15 @@ vim.defer_fn(function()
           ['[]'] = '@class.outer',
         },
       },
-      swap = {
-        enable = true,
-        swap_next = {
-          ['<leader>a'] = '@parameter.inner',
-        },
-        swap_previous = {
-          ['<leader>A'] = '@parameter.inner',
-        },
-      },
+      -- swap = {
+      --   enable = true,
+      --   swap_next = {
+      --     ['<leader>a'] = '@parameter.inner',
+      --   },
+      --   swap_previous = {
+      --     ['<leader>A'] = '@parameter.inner',
+      --   },
+      -- },
     },
   }
 end, 0)
