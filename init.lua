@@ -199,6 +199,8 @@ require('lazy').setup({
   { import = 'custom.plugins' },
 }, {})
 
+vim.o.guicursor = ''
+
 -- Set highlight on search
 vim.o.hlsearch = true
 
@@ -224,6 +226,7 @@ vim.o.breakindent = true
 vim.o.undofile = true
 
 -- Case-insensitive searching UNLESS \C or capital in search
+vim.o.incsearch = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
@@ -241,6 +244,7 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 -- [[ Basic Keymaps ]]
+vim.opt.scrolloff = 8
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -262,6 +266,8 @@ vim.keymap.set('n', '<C-d>', '<C-d>zz')
 
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
+
+vim.keymap.set('n', 'Q', '<Nop>')
 
 vim.keymap.set('n', '<C-j>', '<cmd>cprev<CR>zz')
 vim.keymap.set('n', '<C-k>', '<cmd>cnext<CR>zz')
