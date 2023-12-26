@@ -30,6 +30,9 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
 
+  -- Undotree
+  'mbbill/undotree',
+
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
