@@ -373,6 +373,9 @@ vim.keymap.set('n', '<leader>2', function() ui.nav_file(2) end)
 vim.keymap.set('n', '<leader>3', function() ui.nav_file(3) end)
 vim.keymap.set('n', '<leader>4', function() ui.nav_file(4) end)
 
+-- [[ Configure undotree ]]
+vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>')
+
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
