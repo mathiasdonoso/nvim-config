@@ -24,7 +24,6 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
   'nvim-lua/plenary.nvim',
-  'ThePrimeagen/harpoon',
 
   -- Git related plugins
   'tpope/vim-fugitive',
@@ -362,16 +361,6 @@ vim.keymap.set('n', '<leader>fw', require('telescope.builtin').live_grep, { desc
 -- vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 -- vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
-
--- [[ Configure Harpoon ]]
--- vim.keymap.set('n', '<leader>a', require('harpoon.mark').add_file())
-local ui = require('harpoon.ui')
-vim.keymap.set('n', '<leader>a', require('harpoon.mark').add_file)
-vim.keymap.set('n', '<C-e>', ui.toggle_quick_menu)
-vim.keymap.set('n', '<leader>1', function() ui.nav_file(1) end)
-vim.keymap.set('n', '<leader>2', function() ui.nav_file(2) end)
-vim.keymap.set('n', '<leader>3', function() ui.nav_file(3) end)
-vim.keymap.set('n', '<leader>4', function() ui.nav_file(4) end)
 
 -- [[ Configure undotree ]]
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>')
