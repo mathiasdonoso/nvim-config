@@ -121,9 +121,6 @@ require('lazy').setup({
       transparent_background = true,
     },
     lazy = false,
-    config = function()
-      vim.cmd.colorscheme 'catppuccin'
-    end
   },
 
   {
@@ -138,11 +135,15 @@ require('lazy').setup({
         component_separators = '|',
         section_separators = '',
       },
+      sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch', 'diff' },
+        lualine_c = { 'filename' },
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {},
+      }
     },
-    config = function()
-      vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
-      vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
-    end
   },
 
   {
@@ -199,6 +200,13 @@ require('lazy').setup({
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   { import = 'custom.plugins' },
 }, {})
+
+-- [[ Background transparency ]]
+vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
+
+-- [[ Color scheme ]]
+vim.cmd.colorscheme 'catppuccin'
 
 vim.o.guicursor = ''
 
