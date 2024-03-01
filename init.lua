@@ -112,6 +112,11 @@ require('lazy').setup({
     },
   },
 
+  -- Themes
+  {
+    'rose-pine/neovim',
+    name = 'rose-pine'
+  },
   {
     'catppuccin/nvim',
     name = 'catppuccin',
@@ -131,7 +136,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'catppuccin',
+        theme = 'auto',
         component_separators = '|',
         section_separators = '',
       },
@@ -189,6 +194,17 @@ require('lazy').setup({
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
     build = ':TSUpdate',
+  },
+
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+
   },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
@@ -281,11 +297,15 @@ vim.keymap.set('n', 'Q', '<Nop>')
 vim.keymap.set('n', '<C-j>', '<cmd>cprev<CR>zz')
 vim.keymap.set('n', '<C-k>', '<cmd>cnext<CR>zz')
 
+-- TODO: Decide what to use.... vim diagnostics or trouble
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>vd', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+-- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+-- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+-- vim.keymap.set('n', '<leader>vd', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
+-- [[ Trouble configuration ]]
+vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -298,11 +318,22 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+
+require('rose-pine').setup({
+  styles = {
+    transparency = true,
+  },
+})
+  
+
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
+-- local trouble = require("trouble.providers.telescope")
 require('telescope').setup {
   defaults = {
     mappings = {
+      -- i = { ["<c-t>"] = trouble.open_with_trouble },
+      -- n = { ["<c-t>"] = trouble.open_with_trouble },
       i = {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
@@ -367,7 +398,8 @@ vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { des
 -- vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>fw', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 -- vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+-- Testing if trouble is better for diagnostics for me
+-- vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 -- vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
 -- [[ Configure undotree ]]
@@ -377,6 +409,7 @@ vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>')
 -- See `:help nvim-treesitter`
 -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
 vim.defer_fn(function()
+---@diagnostic disable-next-line: missing-fields
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
     ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
@@ -449,10 +482,10 @@ require('mason-lspconfig').setup()
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  -- clangd = {},
+  clangd = {},
   gopls = {},
-  -- pyright = {},
-  -- rust_analyzer = {},
+  pyright = {},
+  rust_analyzer = {},
   tsserver = {},
   html = { filetypes = { 'html', 'twig', 'hbs'} },
 
