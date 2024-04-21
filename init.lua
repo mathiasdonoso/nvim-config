@@ -51,7 +51,7 @@ vim.opt.timeoutlen = 300
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
--- Not sure about this one, for Fugitive I think I need the split in the top section
+-- Not sure about this one, for Fugitive I need the split to be on the top section
 -- vim.opt.splitbelow = true
 
 -- Preview substitutions live, as you type!
@@ -182,6 +182,38 @@ require("lazy").setup({
 				changedelete = { text = "~" },
 			},
 		},
+	},
+
+	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			local harpoon = require("harpoon")
+
+			-- REQUIRED
+			harpoon:setup()
+
+			vim.keymap.set("n", "<leader>a", function()
+				harpoon:list():add()
+			end)
+			vim.keymap.set("n", "<C-e>", function()
+				harpoon.ui:toggle_quick_menu(harpoon:list())
+			end)
+
+			vim.keymap.set("n", "<S-q>", function()
+				harpoon:list():select(1)
+			end)
+			vim.keymap.set("n", "<S-w>", function()
+				harpoon:list():select(2)
+			end)
+			vim.keymap.set("n", "<S-e>", function()
+				harpoon:list():select(3)
+			end)
+			vim.keymap.set("n", "<S-r>", function()
+				harpoon:list():select(4)
+			end)
+		end,
 	},
 
 	-- NOTE: Plugins can also be configured to run Lua code when they are loaded.
