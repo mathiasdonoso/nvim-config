@@ -1,3 +1,7 @@
+if vim.loader then
+	vim.loader.enable()
+end
+
 require("m")
 
 -- The line beneath this is called `modeline`. See `:help modeline`
