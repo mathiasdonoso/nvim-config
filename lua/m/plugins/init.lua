@@ -1,10 +1,4 @@
 return {
-	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-
-	{ "numToStr/Comment.nvim", opts = {}, event = "VeryLazy" },
-
-	{ "tpope/vim-fugitive", event = "VeryLazy" },
-
 	{ "mbbill/undotree", event = "VeryLazy" },
 }, {
 	ui = {
