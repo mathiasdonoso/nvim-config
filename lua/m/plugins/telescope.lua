@@ -70,19 +70,20 @@ return {
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'Search Git Files' })
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Search Files' })
-      vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-      vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+
+      vim.keymap.set('n', '<leader>sw', function()
+        builtin.grep_string { search = vim.fn.input 'Grep > ' }
+      end)
+
       vim.keymap.set('n', '<leader>fw', builtin.live_grep, { desc = 'Search by Grep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-      vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = 'Search Recent Files' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
-        -- You can pass additional configuration to Telescope to change the theme, layout, etc.
+        -- You can pass additional configuration to Telescope to change the theme, lyout, etc.
         builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
           winblend = 10,
           previewer = false,
