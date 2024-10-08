@@ -14,8 +14,9 @@ vim.keymap.set('n', '<leader>h', '<cmd>nohlsearch<CR>')
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'Q', '<Nop>', { silent = true })
 
-vim.keymap.set('n', '<leader>e', vim.cmd.Exp)
+-- vim.keymap.set('n', '<leader>e', vim.cmd.Exp)
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")

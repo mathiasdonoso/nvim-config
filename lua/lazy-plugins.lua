@@ -22,6 +22,7 @@ require('lazy').setup({
   require 'm/plugins/telescope',
   require 'm/plugins/treesitter',
   require 'm/plugins/ui',
+  require 'm/plugins/oil',
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
