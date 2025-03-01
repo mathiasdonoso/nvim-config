@@ -73,15 +73,11 @@ return {
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'Search Git Files' })
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Search Files' })
-
-      vim.keymap.set('n', '<leader>sw', function()
-        builtin.grep_string { search = vim.fn.input 'Grep > ' }
-      end)
-
-      vim.keymap.set('n', '<leader>fw', builtin.live_grep, { desc = 'Search by Grep' })
+      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
+      vim.keymap.set('n', '<leader>fw', builtin.live_grep, { desc = '[F]ind [W]ord by Grep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = 'Search Recent Files' })
+      vim.keymap.set('n', '<leader>ws', builtin.lsp_dynamic_workspace_symbols, { desc = '[W]orkspace Dynamic Symbols [S]earch' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
       -- Slightly advanced example of overriding default behavior and theme
@@ -92,15 +88,6 @@ return {
           previewer = false,
         })
       end, { desc = '[/] Fuzzily search in current buffer' })
-
-      -- It's also possible to pass additional configuration options.
-      --  See `:help telescope.builtin.live_grep()` for information about particular keys
-      vim.keymap.set('n', '<leader>s/', function()
-        builtin.live_grep {
-          grep_open_files = true,
-          prompt_title = 'Live Grep in Open Files',
-        }
-      end, { desc = '[S]earch [/] in Open Files' })
 
       -- Shortcut for searching your Neovim configuration files
       vim.keymap.set('n', '<leader>sn', function()
